@@ -40,8 +40,7 @@ Click the button below to deploy an Azure Web App for Linux. This will create a 
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-## Deploy the App Continuously with Azure DevOps:
-Follow my step-by-step guide: [Build Your First CI/CD Pipeline using Azure DevOps](https://mikepfeiffer.io/azure-devops-pipeline.html)
+
 
 This walkthrough contains all the steps you should follow to fork this repo and build your own automated build and release pipeline.
 
@@ -49,12 +48,12 @@ This walkthrough contains all the steps you should follow to fork this repo and 
 
 ### Author
 
-Mike Pfeiffer
-[@mike_pfeiffer](https://twitter.com/mike_pfeiffer)
+walexkino
+>> waladino@yahoo.com
 
 ### Version
 
-1.0.0
+3.2.0
 
 ### License
 
