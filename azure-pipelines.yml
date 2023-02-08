@@ -2,7 +2,7 @@ trigger:
 - master
 
 pool:
-  Self-Hosted-Ubuntu-Agent
+  ubuntu-20.04
 
 steps:
 - task: NodeTool@0
