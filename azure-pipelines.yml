@@ -15,8 +15,9 @@ steps:
   displayName: 'npm install'
 
 - script: |
-    npm test
+    npm test -- --watchAll=false --coverage --testResultsProcessor=jest-junit
   displayName: 'npm test'
+  
   
 - task: ArchiveFiles@2
   displayName: 'Archive files'
