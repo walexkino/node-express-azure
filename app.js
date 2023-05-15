@@ -22,3 +22,5 @@ app.use('/contact', contact);
 app.listen(config.port, () => {
   console.log(`Demo app is running on ${config.port}!`);
 });
+
+module.exports = app; // Added this line to export the app object
