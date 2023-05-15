@@ -3,7 +3,7 @@ trigger:
 
 pool:
   # vmImage: Self
-  demands: 'SelfHostedCruise'
+  name: 'SelfHostedCruise'
 
 steps:
 - task: NodeTool@0
