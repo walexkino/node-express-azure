@@ -2,7 +2,8 @@ trigger:
 - master
 
 pool:
-  vmImage: windows-latest
+  # vmImage: Self
+  demands: 'SelfHostedCruise'
 
 steps:
 - task: NodeTool@0
