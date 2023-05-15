@@ -5,6 +5,10 @@ pool:
   name: 'SelfHostedCruise'
 
 steps:
+
+- script: echo "##vso[task.setvariable variable=PORT]3001"
+  displayName: 'Set port variable'
+
 - task: NodeTool@0
   inputs:
     versionSpec: '14.x'
