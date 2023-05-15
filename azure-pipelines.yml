@@ -2,24 +2,24 @@ trigger:
 - master
 
 pool:
-  # vmImage: Self
   name: 'SelfHostedCruise'
 
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '18.x'
+    versionSpec: '8.x'
   displayName: 'Install Node.js'
 
 - script: |
     npm install
-  displayName: 'npm install'
+    npm install --save-dev nyc
+    npm install --save-dev mocha-junit-reporter
+  displayName: 'npm install and install dev dependencies'
 
 - script: |
-    npm test -- --watchAll=false --coverage --testResultsProcessor=jest-junit
-  displayName: 'npm test'
-  
-  
+    npx nyc npm test
+  displayName: 'npm test with coverage'
+
 - task: ArchiveFiles@2
   displayName: 'Archive files'
   inputs:
@@ -28,4 +28,3 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifacts: drop'
-  
