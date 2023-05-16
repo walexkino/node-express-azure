@@ -1,11 +1,11 @@
 trigger:
 - master
 
-# pool:
-#   name: 'SelfHostedCruise'
-
 pool:
-  vmImage: ubuntu-latest
+  name: 'SelfHostedCruise'
+
+# pool:
+#   vmImage: ubuntu-latest
 
 steps:
 
