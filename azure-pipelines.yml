@@ -41,9 +41,31 @@ stages:
     - task: PublishBuildArtifacts@1
       displayName: 'Publish artifacts: drop'
 
+- stage: Test
+  displayName: 'Test stage'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - deployment: Test
+    displayName: 'Test'
+    pool:
+      name: 'SelfHostedCruise'
+    environment: 'Testing'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureRmWebAppDeployment@4
+            inputs:
+              ConnectionType: 'AzureRM'
+              azureSubscription: 'Visual Studio Enterprise Subscription (131ca349-8b25-4fcd-b47d-2aca58898f7c)'
+              appType: 'webAppLinux'
+              WebAppName: 'node-qa'
+              packageForLinux: '$(Pipeline.Workspace)/drop/**/*.zip'
+
 - stage: Deploy
   displayName: 'Deploy stage'
-  dependsOn: Build
+  dependsOn: Test
   condition: succeeded()
   jobs:
   - deployment: Deploy
