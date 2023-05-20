@@ -1,3 +1,20 @@
+parameters:
+- name: azureSubscription
+  type: string
+  default: 'Visual Studio Enterprise Subscription (131ca349-8b25-4fcd-b47d-2aca58898f7c)'
+- name: testWebAppName
+  type: string
+  default: 'node-qa'
+- name: prodWebAppName
+  type: string
+  default: 'agba-devops-cruise'
+# - name: appType
+#   type: string
+#   default: 'webAppLinux'
+- name: poolName
+  type: string
+  default: 'SelfHostedCruise'
+
 trigger:
 - master
 
@@ -9,7 +26,7 @@ stages:
 - stage: Build
   displayName: 'Build stage'
   pool:
-    name: 'SelfHostedCruise'
+    name: '${{ parameters.poolName }}'
   jobs:
   - job: Build
     displayName: 'Build'
@@ -60,7 +77,7 @@ stages:
   - deployment: Test
     displayName: 'Test'
     pool:
-      name: 'SelfHostedCruise'
+      name: '${{ parameters.poolName }}'
     environment: 'Testing'
     strategy:
       runOnce:
@@ -69,9 +86,9 @@ stages:
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
-              azureSubscription: 'Visual Studio Enterprise Subscription (131ca349-8b25-4fcd-b47d-2aca58898f7c)'
+              azureSubscription: '${{ parameters.azureSubscription }}'
               appType: 'webAppLinux'
-              WebAppName: 'node-qa'
+              WebAppName: '${{ parameters.testWebAppName }}'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
 
 - stage: Deploy
@@ -82,7 +99,7 @@ stages:
   - deployment: Deploy
     displayName: 'Deploy'
     pool:
-      name: 'SelfHostedCruise'
+      name: '${{ parameters.poolName }}'
     environment: 'Production'
     strategy:
       runOnce:
@@ -91,7 +108,8 @@ stages:
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
-              azureSubscription: 'Visual Studio Enterprise Subscription (131ca349-8b25-4fcd-b47d-2aca58898f7c)'
+              azureSubscription: '${{ parameters.azureSubscription }}'
               appType: 'webAppLinux'
-              WebAppName: 'agba-devops-cruise'
+              WebAppName: '${{ parameters.prodWebAppName }}'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+             
