@@ -48,6 +48,8 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: 'Deploy'
+    pool:
+      name: 'SelfHostedCruise'
     environment: 'Production'
     strategy:
       runOnce:
