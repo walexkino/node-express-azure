@@ -66,13 +66,6 @@ stages:
               appType: 'webAppLinux'
               WebAppName: 'agba-devops-cruise'
               packageForLinux: '$(Pipeline.Workspace)/drop/**/*.zip'
-    environment:
-      name: 'Production'
-      resourceType: 'WebApp'
-      tags: 'webapp'
-      properties:
-        serviceConnection: 'Visual Studio Enterprise Subscription (131ca349-8b25-4fcd-b47d-2aca58898f7c)'
-        appName: 'agba-devops-cruise'
     approvals:
       - check:
           name: 'Pre-deployment approvals'
