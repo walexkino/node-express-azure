@@ -32,6 +32,10 @@ stages:
         npx nyc npm test
       displayName: 'npm test with coverage'
 
+    - script: |
+        rm -f $(System.DefaultWorkingDirectory)/*.zip
+      displayName: 'Cleanup old .zip files'
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
