@@ -41,9 +41,16 @@ stages:
       inputs:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
         includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
 
     - task: PublishBuildArtifacts@1
       displayName: 'Publish artifacts: drop'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
 
 - stage: Test
   displayName: 'Test stage'
@@ -65,7 +72,7 @@ stages:
               azureSubscription: 'Visual Studio Enterprise Subscription (131ca349-8b25-4fcd-b47d-2aca58898f7c)'
               appType: 'webAppLinux'
               WebAppName: 'node-qa'
-              packageForLinux: '$(Pipeline.Workspace)/drop/**/*.zip'
+              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
 
 - stage: Deploy
   displayName: 'Deploy stage'
@@ -87,4 +94,4 @@ stages:
               azureSubscription: 'Visual Studio Enterprise Subscription (131ca349-8b25-4fcd-b47d-2aca58898f7c)'
               appType: 'webAppLinux'
               WebAppName: 'agba-devops-cruise'
-              packageForLinux: '$(Pipeline.Workspace)/drop/**/*.zip'
+              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
