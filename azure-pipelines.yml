@@ -51,10 +51,6 @@ stages:
     environment: 
       name: 'Production'
       resourceType: 'WebApp'
-      tags: 'webapp'
-      properties:
-        serviceConnection: 'Visual Studio Enterprise Subscription (131ca349-8b25-4fcd-b47d-2aca58898f7c)'
-        appName: 'agba-devops-cruise'
     strategy:
       runOnce:
         deploy:
@@ -66,18 +62,3 @@ stages:
               appType: 'webAppLinux'
               WebAppName: 'agba-devops-cruise'
               packageForLinux: '$(Pipeline.Workspace)/drop/**/*.zip'
-    approvals:
-      - check:
-          name: 'Pre-deployment approvals'
-          type: 'Approval'
-          approvers:
-            - email: 'waladino@yahoo.com'
-              displayName: 'Pre-deployment approver'
-      - check:
-          name: 'Azure Monitor Alert'
-          type: 'InvokeRESTAPI'
-          inputs:
-            serviceConnection: 'Visual Studio Enterprise Subscription (131ca349-8b25-4fcd-b47d-2aca58898f7c)'
-            headers: '{"Content-Type":"application/json"}'
-            urlSuffix: '/subscriptions/131ca349-8b25-4fcd-b47d-2aca58898f7c/providers/Microsoft.AlertsManagement/alertsSummary?api-version=2019-05-05-preview'
-            method: 'GET'
