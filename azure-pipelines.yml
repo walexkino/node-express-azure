@@ -91,13 +91,13 @@ stages:
               WebAppName: '${{ parameters.testWebAppName }}'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
 
-- stage: Deploy
-  displayName: 'Deploy stage'
+- stage: Production
+  displayName: 'Production stage'
   dependsOn: Test
   condition: succeeded()
   jobs:
-  - deployment: Deploy
-    displayName: 'Deploy'
+  - deployment:  Production
+    displayName: 'Production'
     pool:
       name: '${{ parameters.poolName }}'
     environment: 'Production'
