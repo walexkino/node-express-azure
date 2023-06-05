@@ -19,8 +19,9 @@ trigger:
 - master
 
 variables:
-- name: PORT
-  value: 3001
+- group: myvariable-group
+# - name: PORT
+#   value: 3001
 
 stages:
 - stage: Build
