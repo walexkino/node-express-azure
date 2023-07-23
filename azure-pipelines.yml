@@ -1,3 +1,7 @@
+
+trigger:
+- master
+
 parameters:
 - name: azureSubscription
   type: string
@@ -15,8 +19,8 @@ parameters:
   type: string
   default: 'SelfHostedCruise'
 
-trigger:
-- master
+
+
 
 variables:
 - group: myvariable-group
