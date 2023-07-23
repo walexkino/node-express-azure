@@ -97,7 +97,7 @@ stages:
 - stage: Production
   displayName: 'Production stage'
   dependsOn: Test
-  condition: condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
   jobs:
   - deployment:  Production
     displayName: 'Production'
