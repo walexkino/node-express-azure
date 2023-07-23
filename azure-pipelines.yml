@@ -21,7 +21,7 @@ parameters:
 
 - name: poolName
   type: string
-  default: 'ubuntu-latest
+  default: 'ubuntu-latest'
 
 
 variables:
