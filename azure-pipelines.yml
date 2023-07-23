@@ -1,3 +1,7 @@
+
+trigger:
+- master
+
 parameters:
 - name: azureSubscription
   type: string
@@ -15,8 +19,6 @@ parameters:
   type: string
   default: 'SelfHostedCruise'
 
-trigger:
-- master
 
 variables:
 - group: myvariable-group
@@ -95,7 +97,7 @@ stages:
 - stage: Production
   displayName: 'Production stage'
   dependsOn: Test
-  condition: succeeded()
+  condition: condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/release'))
   jobs:
   - deployment:  Production
     displayName: 'Production'
