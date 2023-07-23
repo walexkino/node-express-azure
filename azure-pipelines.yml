@@ -15,9 +15,13 @@ parameters:
 # - name: appType
 #   type: string
 #   default: 'webAppLinux'
+# - name: poolName
+#   type: string
+#   default: 'SelfHostedCruise'
+
 - name: poolName
   type: string
-  default: 'SelfHostedCruise'
+  default: 'ubuntu-latest
 
 
 variables:
