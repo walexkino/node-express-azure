@@ -19,6 +19,7 @@ parameters:
 #   type: string
 #   default: 'SelfHostedCruise'
 
+
 - name: poolName
   type: string
   default: 'ubuntu-latest'
